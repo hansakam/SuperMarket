@@ -1,5 +1,7 @@
 package lk.ijse.customer;
 
+import lk.ijse.customer.embedd.Name;
+import lk.ijse.customer.entity.Customer;
 import lk.ijse.customer.entity.Item;
 import lk.ijse.customer.util.FactoryConfiguration;
 import org.hibernate.Session;
@@ -12,28 +14,29 @@ import org.hibernate.Transaction;
 
 public class Appinitializer {
     public static void main(String[] args) {
-        Item i2 = new Item();
-             i2.setCode("I002");
-             i2.setDescription("Biscuite");
-             i2.setPrice(200);
-             i2.setQty(800);
+
+
+        Name name = new Name();
+            name.setFName("Maduka");
+            name.setMName("Malshan");
+            name.setLName("Ranasinghe");
+
+        Customer c2 = new Customer();
+                c2.setId("C002");
+                c2.setName(name);
+                c2.setAddress("Galle");
+                c2.setSalary(100000);
 
         Session session = FactoryConfiguration.getinstance().getsession();
 
         Transaction transaction = session.beginTransaction();
 
-                  /* session.save(i2);*/
-                    /*session.update(i1);*/
-/*
-        Item i01 = session.get(Item.class,"I001");
-        System.out.println(i01.getDescription());*/
+        session.save(c2);
+      /*  Customer d = session.get(Customer.class, "C001");
+        session.delete(d);*/
 
-        Item item = session.get(Item.class, "I002");
-        session.delete(item);
-
-                    transaction.commit();
-                    session.close();
-
+        transaction.commit();
+        session.close();
 
     }
 }

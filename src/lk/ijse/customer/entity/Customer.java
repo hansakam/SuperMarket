@@ -4,21 +4,27 @@
  */
 package lk.ijse.customer.entity;
 
+import lk.ijse.customer.embedd.Name;
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Customer {
     @Id
     private String id;
-    private String name;
+    private Name name;
     private String address;
     private double salary;
+    @CreationTimestamp
+    private Date date;
 
     public Customer() {
     }
 
-    public Customer(String id, String name, String address, double salary) {
+    public Customer(String id, Name name, String address, double salary) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -33,11 +39,11 @@ public class Customer {
         this.id = id;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Name name) {
         this.name = name;
     }
 
