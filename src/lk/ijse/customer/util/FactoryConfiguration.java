@@ -15,10 +15,11 @@ public class FactoryConfiguration {
 
     private FactoryConfiguration(){
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Item.class);
+         sessionFactory = configuration.buildSessionFactory();
 
     }
-    public FactoryConfiguration getinstance(){
-       return factoryConfiguration==null ? new FactoryConfiguration() :factoryConfiguration;
+    public static FactoryConfiguration getinstance(){
+       return factoryConfiguration==null ? factoryConfiguration=new FactoryConfiguration() :factoryConfiguration;
     }
     public Session getsession(){
         return sessionFactory.openSession();
